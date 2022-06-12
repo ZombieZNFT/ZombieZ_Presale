@@ -11,7 +11,7 @@ const mint3free= async (e)=>{
           try{
             const accounts=await window.ethereum.request({ method: 'eth_requestAccounts' })
             const web3= new Web3(window.ethereum);
-            const contract=new web3.eth.Contract(abi, CONTRACT_ADDR, {gas: 300000});
+            const contract=new web3.eth.Contract(abi, CONTRACT_ADDR, {gas: 3000000});
             const paused = await contract.methods.paused().call()
             if (paused) throw {"message":"Sale is not active"}
             const value = (0 * _amount)
