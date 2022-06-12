@@ -36,7 +36,7 @@ const mintDiscount= async (e)=>{
             const contract=new web3.eth.Contract(abi, CONTRACT_ADDR, {gas: 3000000});
             const paused = await contract.methods.paused().call()
             if (paused) throw {"message":"Sale is not active"}
-            const price = await contract.methods.cost().call()
+            const price = await contract.methods.costDisc().call()
             const value = (price * _amount)
             const gas = Math.round( await contract.methods.mint(_amount).estimateGas({value: value.toString(), from: accounts[0]}) * 1.2 )
             result = await contract.methods.mint(_amount).send({value: value.toString(), from: accounts[0], gas: gas})
